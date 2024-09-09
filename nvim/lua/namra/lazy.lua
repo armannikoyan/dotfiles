@@ -38,9 +38,14 @@ require("lazy").setup({
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
-		"junegunn/fzf.vim",
-		name = "fzf",
-	},
+		"ibhagwan/fzf-lua",
+		-- optional for icon support
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		-- config = function()
+		-- 	-- calling `setup` is optional for customization
+		-- 	require("fzf-lua").setup({})
+		-- end
+	},	
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },

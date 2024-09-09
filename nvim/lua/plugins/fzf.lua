@@ -1,7 +1,6 @@
 return {
-	'junegunn/fzf.vim',
-	name = 'fzf',
+	"ibhagwan/fzf-lua",
 	config = function()
-		require('fzf').setup({})
+		require('fzf-lua').setup({})
 	end
 }
