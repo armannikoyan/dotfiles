@@ -38,6 +38,10 @@ require("lazy").setup({
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
 		"ibhagwan/fzf-lua",
 		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
