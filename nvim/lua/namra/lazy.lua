@@ -28,7 +28,7 @@ require("lazy").setup({
 			height = 0.85,
 		},
 	},
-	{ "rose-pine/neovim", name = "rose-pine" },
+	{ "neanias/everforest-nvim" },
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
 	{ "nvim-treesitter/nvim-treesitter" },
