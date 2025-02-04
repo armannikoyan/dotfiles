@@ -1,0 +1,4 @@
+theme = "Tomorrow Night"
+font-family-bold = "SauceCodePro Nerd Font Mono"
+font-size = "16"
+macos-titlebar-style = tabs
