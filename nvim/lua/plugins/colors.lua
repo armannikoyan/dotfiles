@@ -1,16 +1,14 @@
 return {
-	"neanias/everforest-nvim",
-	version = false,
+	"armannikoyan/rusty",
 	lazy = false,
 	priority = 1000,
 	opts = {
-		transparent_background_level = 2,
-		italics = true,
-		background = "hard",
+		transparent = true,
+		italic_comments = true,
+		underline_current_line = true,
 	},
 	config = function(_, opts)
-		require("everforest").setup(opts)
-		vim.cmd("colorscheme everforest")
+		require("rusty").setup(opts)
+		vim.cmd("colorscheme rusty")
 	end,
 }
-

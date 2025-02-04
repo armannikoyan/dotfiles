@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -16,11 +16,10 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	checker = {
-		enabled = true, -- automatically check for plugin updates
-		notify = false, -- get a notification when new updates are found
+		enabled = true,
+		notify = false,
 	},
 
-	-- ui config
 	ui = {
 		border = "rounded",
 		size = {
@@ -28,12 +27,11 @@ require("lazy").setup({
 			height = 0.85,
 		},
 	},
-	{ "neanias/everforest-nvim" },
+	{ "armannikoyan/rusty" },
 	{ "mbbill/undotree" },
 	{ "tpope/vim-fugitive" },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "42Paris/42header" },
-	{ "numToStr/Comment.nvim" },
 	{ "github/copilot.vim" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
@@ -43,18 +41,12 @@ require("lazy").setup({
 	},
 	{
 		"ibhagwan/fzf-lua",
-		-- optional for icon support
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		-- config = function()
-		-- 	-- calling `setup` is optional for customization
-		-- 	require("fzf-lua").setup({})
-		-- end
 	},	
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		dependencies = { 'nvim-lua/plenary.nvim' }
@@ -62,6 +54,11 @@ require("lazy").setup({
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
+	},
+	{ 
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {}
 	},
 	{
 		"ThePrimeagen/refactoring.nvim",

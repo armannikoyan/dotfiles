@@ -20,7 +20,7 @@ return {
 			local config = {
 				options = {
 					icons_enabled = true,
-					theme = 'everforest',
+					theme = require('rusty').lualine,
 					component_separators = '',
 					section_separators = '',
 					disabled_filetypes = {
@@ -73,7 +73,7 @@ return {
 					lualine_z = {
 						{
 							'location',
-							separator = { left = ' ', right = '' },
+							separator = { left = ' ', right = ' ' },
 						}
 					},
 				},
