@@ -1,4 +1,13 @@
 theme = "Tomorrow Night"
+
+window-height = 23
+window-width = 81
+
 font-family-bold = "SauceCodePro Nerd Font Mono"
 font-size = "16"
+
 macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = visible
+
+cursor-style-blink = false
+shell-integration-features = no-cursor
