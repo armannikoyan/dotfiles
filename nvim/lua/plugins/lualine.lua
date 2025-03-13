@@ -64,12 +64,7 @@ return {
 					},
 					lualine_c = { { filename } },
 					lualine_x = { 'encoding', 'fileformat' },
-					lualine_y = { 
-						{
-							'progress',
-							separator = { left = ' ' },
-						}
-					},
+					lualine_y = {},
 					lualine_z = {
 						{
 							'location',
