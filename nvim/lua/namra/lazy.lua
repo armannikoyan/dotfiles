@@ -32,7 +32,6 @@ require("lazy").setup({
 	{ "tpope/vim-fugitive" },
 	{ "nvim-treesitter/nvim-treesitter" },
 	{ "42Paris/42header" },
-	{ "github/copilot.vim" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "nvim-treesitter/nvim-treesitter-context" },
 	{
