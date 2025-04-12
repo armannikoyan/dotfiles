@@ -15,12 +15,18 @@ vim.o.signcolumn = "yes"
 vim.o.termguicolors = true
 vim.o.colorcolumn = "80"
 
--- Set tabs for C files
+-- Set tabs for C and C header files
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.h",
+  callback = function()
+    vim.bo.filetype = "c"  -- Treat .h as C files
+  end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c",
+  pattern = { "c", "h" },
   callback = function()
     vim.bo.expandtab = false  -- Use actual tabs
-    -- Optional: You can set different tab width for C if desired
     -- vim.bo.tabstop = 4
     -- vim.bo.shiftwidth = 4
   end,
