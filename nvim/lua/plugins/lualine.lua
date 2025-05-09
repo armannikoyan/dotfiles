@@ -19,6 +19,7 @@ return {
 
 			local config = {
 				options = {
+          theme = require('rusty').lualine,
 					icons_enabled = true,
 					component_separators = '',
 					section_separators = '',
@@ -39,7 +40,7 @@ return {
 				sections = {
 					lualine_a = {
 						{
-							function() return "󰊠" end,
+							function() return "" end,
 							'mode',
 							separator = { left = ' ', right = '' },
 						}
