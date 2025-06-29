@@ -3,3 +3,4 @@ iterm2
 flutter
 tmux/plugins
 nvim/lazy-lock.json
+*.lock
