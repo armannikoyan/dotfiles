@@ -19,22 +19,31 @@
 # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.mkalias
-        pkgs.neovim
+          pkgs.rustup
+          pkgs.deno
+          pkgs.neovim
 # pkgs.valgrind
+# neovim config deps
+          pkgs.viu
+          pkgs.chafa
+          pkgs.ueberzugpp
           pkgs.fzf
+# end of neovim config deps
         ];
 
       homebrew =
       { enable = true;
         casks = [ "telegram"
+          "steam"
+          "figma"
         ];
         onActivation.cleanup = "zap";
       };
 
-      masApps =
-      {
-# "[NAME]" = "[ID]"
-      };
+#       masApps =
+#       {
+# # "[NAME]" = "[ID]"
+#       };
 
       fonts.packages =
         [ pkgs.nerd-fonts.sauce-code-pro
