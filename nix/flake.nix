@@ -20,7 +20,7 @@
       environment.systemPackages =
         [ pkgs.mkalias
           pkgs.rustup
-          pkgs.deno
+          pkgs.bun
           pkgs.neovim
 # pkgs.valgrind
 # neovim config deps
@@ -29,21 +29,20 @@
           pkgs.ueberzugpp
           pkgs.fzf
 # end of neovim config deps
+          pkgs.vscode
+          pkgs.zulu
         ];
 
       homebrew =
       { enable = true;
-        casks = [ "telegram"
-          "steam"
-          "figma"
+        brews = [ "mas"
         ];
+        casks = [ "steam"
+        ];
+        masApps = { "Telegram" = 747648890;
+        };
         onActivation.cleanup = "zap";
       };
-
-#       masApps =
-#       {
-# # "[NAME]" = "[ID]"
-#       };
 
       fonts.packages =
         [ pkgs.nerd-fonts.sauce-code-pro
