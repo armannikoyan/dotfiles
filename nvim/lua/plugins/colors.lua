@@ -9,6 +9,5 @@ return {
   },
   config = function(_, opts)
     require("rusty").setup(opts)
-    vim.cmd("colorscheme rusty")
   end,
 }
