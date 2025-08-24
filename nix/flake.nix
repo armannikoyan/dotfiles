@@ -38,6 +38,7 @@
         brews = [ "mas"
         ];
         casks = [ "steam"
+        "container"
         ];
         masApps = { "Telegram" = 747648890;
         };
