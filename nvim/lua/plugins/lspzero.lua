@@ -23,39 +23,51 @@ return {
 			local lsp_zero = require('lsp-zero')
 
 			lsp_zero.setup({
-				ensure_installed = { 'clangd' },  -- Add clangd to ensure it is installed and configured
-				-- You can also set specific configurations for clangd here if needed
+				ensure_installed = { 'clangd', 'lua_ls', 'rust_analyzer' },
 			})
 
 			lsp_zero.on_attach(function(client, bufnr)
-				-- see :help lsp-zero-keybindings
-				-- to learn the available actions
 				lsp_zero.default_keymaps({buffer = bufnr})
 			end)
 
 			lsp_zero.set_sign_icons({
 				error = ' ',
 				warn = ' ',
-				hint = '⚑ ',
-				info = '󰌵 '
+				hint = ' ',
+				info = ' '
 			})
 
-			-- to learn how to use mason.nvim with lsp-zero
-			-- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 			require("mason").setup({
 				ui = {
 					icons = {
-						package_installed = "✓",
+						package_installed = "",
 						package_pending = "➜",
-						package_uninstalled = "✗"
+						package_uninstalled = ""
 					}
 				}
 			})
+
 			require('mason-lspconfig').setup({
-				ensure_installed = { "clangd", "luau_lsp", "rust_analyzer" },
+				ensure_installed = { 'clangd', 'lua_ls', 'rust_analyzer' },
 				automatic_installation = false,
 				handlers = {
+					-- Default handler
 					lsp_zero.default_setup,
+
+          lsp_zero.configure('lua_ls', {
+            cmd = { 'lua-language-server' },
+            settings = {
+              Lua = {
+                runtime = {
+                  version = 'LuaJIT',
+                  path = vim.split(package.path, ';'),
+                },
+                diagnostics = {
+                  globals = { 'vim' },
+                },
+              },
+            },
+          })
 				},
 			})
 
@@ -64,19 +76,14 @@ return {
 
 			cmp.setup({
 				mapping = cmp.mapping.preset.insert({
-					-- `Enter` key to confirm completion
 					['<CR>'] = cmp.mapping.confirm({select = false}),
-
-					-- Navigate between snippet placeholder
 					['<C-f>'] = cmp_action.luasnip_jump_forward(),
 					['<C-b>'] = cmp_action.luasnip_jump_backward(),
-
-					-- Scroll up and down in the completion documentation
 					['<C-u>'] = cmp.mapping.scroll_docs(-4),
 					['<C-d>'] = cmp.mapping.scroll_docs(4),
 				}),
 				sources = {
-					{ name = 'nvim_lsp' },  -- Ensure nvim_lsp is included here
+					{ name = 'nvim_lsp' },
 					{ name = 'buffer' },
 					{ name = 'path' },
 					{ name = 'luasnip' },
@@ -85,3 +92,4 @@ return {
 		end,
 	},
 }
+

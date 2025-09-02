@@ -19,52 +19,28 @@ require("lazy").setup({
 		enabled = true,
 		notify = false,
 	},
-
-	ui = {
-		border = "rounded",
-		size = {
-			width = 0.85,
-			height = 0.85,
-		},
-	},
+	-- ui = {
+	-- 	border = "rounded",
+	-- 	size = {
+	-- 		width = 0.85,
+	-- 		height = 0.85,
+	-- 	},
+	-- },
 	{ "armannikoyan/rusty" },
-	{ "mbbill/undotree" },
-	{ "tpope/vim-fugitive" },
-	{ "nvim-treesitter/nvim-treesitter" },
+  {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"},
 	{ "42Paris/42header" },
-	{ "norcalli/nvim-colorizer.lua" },
-	{ "nvim-treesitter/nvim-treesitter-context" },
+	{ "nvim-treesitter/nvim-treesitter-context" }, -- needs configuration
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
-		"ibhagwan/fzf-lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},	
-	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.5',
-		dependencies = { 'nvim-lua/plenary.nvim' }
-	},
-	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
-	},
-	{ 
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		opts = {}
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		}
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
