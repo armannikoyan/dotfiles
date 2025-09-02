@@ -20,14 +20,20 @@
       environment.systemPackages =
         [ pkgs.mkalias
           pkgs.rustup
-          pkgs.bun
+          pkgs.nodejs_24
           pkgs.neovim
 # pkgs.valgrind
 # neovim config deps
-          pkgs.viu
-          pkgs.chafa
-          pkgs.ueberzugpp
-          pkgs.fzf
+          pkgs.lua5_1
+          pkgs.lua51Packages.luarocks_bootstrap
+          pkgs.lua51Packages.jsregexp
+          pkgs.wget
+          pkgs.php84Packages.cyclonedx-php-composer
+          pkgs.go
+          pkgs.php
+          pkgs.julia_19-bin
+          pkgs.tree-sitter
+          pkgs.ripgrep
 # end of neovim config deps
           pkgs.vscode
           pkgs.zulu
