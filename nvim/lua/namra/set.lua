@@ -81,19 +81,12 @@ vim.opt.encoding = "UTF-8"                         -- Set encoding
 
 -- Cursor settings
 -- === Adaptive cursor (works in TUI + GUI) ===
--- 1) In GUI: keep your block cursor; we invert the cell under it for contrast.
--- 2) In terminal: use a thin cursor; we draw an inverted cell so the char stays visible.
+-- Keep your block cursor everywhere; invert the cell under it for contrast.
 
--- Keep your original guicursor as a base:
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:block,o:block,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- Detect common GUIs; adjust if you use another
 local is_gui = vim.g.neovide or vim.g.goneovim or vim.g.nvim_gui_shim
-
--- In TUI, switch to a thin cursor so the highlight below is visible
-if not is_gui then
-  vim.opt.guicursor = "n-v-c:ver25,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250"
-end
 
 -- Highlight group for the single cell under cursor: reverse ensures contrast,
 -- nocombine prevents syntax colors from overpowering it.
