@@ -19,7 +19,7 @@
 # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [ pkgs.mkalias
-          pkgs.rustup
+        pkgs.rustup
           pkgs.nodejs_24
           pkgs.neovim
 # pkgs.valgrind
@@ -35,19 +35,18 @@
           pkgs.tree-sitter
           pkgs.ripgrep
 # end of neovim config deps
-          pkgs.vscode
           pkgs.zulu
           pkgs.fvm
           pkgs.cocoapods
           pkgs.gcc
-        ];
+          ];
 
       homebrew =
       { enable = true;
         brews = [ "mas"
         ];
         casks = [ "steam"
-        "container"
+          "container"
         ];
         masApps = { "Telegram" = 747648890;
         };
@@ -59,24 +58,24 @@
         ];
 
       system.activationScripts.applications.text = let
-       env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = config.environment.systemPackages;
-        pathsToLink = "/Applications";
-       };
+        env = pkgs.buildEnv {
+          name = "system-applications";
+          paths = config.environment.systemPackages;
+          pathsToLink = "/Applications";
+        };
       in
         pkgs.lib.mkForce ''
-        # Set up applications.
-       echo "setting up /Applications..." >&2
-       rm -rf /Applications/Nix\ Apps
-       mkdir -p /Applications/Nix\ Apps
-       find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-       while read -r src; do
-        app_name=$(basename "$src")
-         echo "copying $src" >&2
-         ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/$app_name"
-         done
-         '';
+# Set up applications.
+        echo "setting up /Applications..." >&2
+        rm -rf /Applications/Nix\ Apps
+        mkdir -p /Applications/Nix\ Apps
+        find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+        while read -r src; do
+          app_name=$(basename "$src")
+            echo "copying $src" >&2
+            ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/$app_name"
+            done
+            '';
 
       system.primaryUser = "armannikoyan";
 
