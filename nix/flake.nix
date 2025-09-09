@@ -19,10 +19,13 @@
         # List packages installed in system profile. To search by name, run:
         # $ nix-env -qaP | grep wget
         environment.systemPackages = [
+          pkgs.pkg-config
           pkgs.mkalias
+          pkgs.gcc
+          pkgs.readline
+          pkgs.neovim
           pkgs.rustup
           pkgs.nodejs_24
-          pkgs.neovim
           # pkgs.valgrind
           # neovim config deps
           pkgs.lua5_1
@@ -39,7 +42,6 @@
           pkgs.zulu
           pkgs.fvm
           pkgs.cocoapods
-          pkgs.gcc
         ];
 
         # Define user and home directory
@@ -105,6 +107,12 @@
 
         # The platform the configuration will be used on.
         nixpkgs.hostPlatform = "aarch64-darwin";
+
+        environment.extraInit = ''
+          export PKG_CONFIG_PATH=${pkgs.readline.dev}/lib/pkgconfig:$PKG_CONFIG_PATH
+          export LDFLAGS="-L${pkgs.readline}/lib $LDFLAGS"
+          export CPPFLAGS="-I${pkgs.readline.dev}/include $CPPFLAGS"
+          '';
       };
     in
     {

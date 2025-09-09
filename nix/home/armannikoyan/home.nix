@@ -46,8 +46,7 @@
         for dir in $HOME/fvm/versions/*/bin; do
           [ -d "$dir" ] && PATH="${PATH:+$PATH:}$dir"
         done
-      fi
-
+        fi
       # Terminal-specific settings
       if [[ $TERM_PROGRAM == "Apple_Terminal" ]]; then
         update_terminal_cwd() {
