@@ -58,7 +58,6 @@
           casks = [
             "steam"
             "container"
-            "spotify"
           ];
           masApps = {
             "Telegram" = 747648890;

@@ -3,7 +3,7 @@
 {
   # Basic Home Manager settings
   home.username = "armannikoyan";
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.11";
 
   # Environment variables
   home.sessionVariables = {
@@ -11,12 +11,6 @@
   };
 
   home.sessionPath = [ "$HOME/.local/bin" ];
-
-  # Packages
-  home.packages = [
-    # Add starship to packages if you want HM to manage installation
-    # pkgs.starship
-  ];
 
   programs.zsh = {
     enable = true;
@@ -37,6 +31,8 @@
     };
 
     initContent = ''
+      eval "$(starship init zsh)"
+
       # Vi mode settings
       set -o vi
       bindkey -v '^?' backward-delete-char
@@ -46,7 +42,8 @@
         for dir in $HOME/fvm/versions/*/bin; do
           [ -d "$dir" ] && PATH="${PATH:+$PATH:}$dir"
         done
-        fi
+      fi
+
       # Terminal-specific settings
       if [[ $TERM_PROGRAM == "Apple_Terminal" ]]; then
         update_terminal_cwd() {
@@ -61,14 +58,29 @@
     '';
   };
 
-  # Starship configuration
-  # programs.starship = {
-  #   enable = true;
-    # Add custom starship configuration if needed
-    # settings = { 
-    #   add_newline = false;
-    # };
-  # };
+  home.packages = [ pkgs.starship ]; 
+
+  home.activation.setupStarship = let
+  starshipConfig = "$HOME/.config/starship.toml";
+  in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  $VERBOSE_ECHO "Setting up Starship Jetpack preset"
+  ${pkgs.starship}/bin/starship preset jetpack -o ${starshipConfig}
+
+  $VERBOSE_ECHO "Disabling time and battery modules"
+# Modify existing [time] section to disable it
+if grep -q "^\[time\]" ${starshipConfig}; then
+sed -i.tmp '/^\[time\]/,/^\[/ { /^\[time\]/ a\
+disabled = true
+; /^disabled = /d }' ${starshipConfig} && rm -f ${starshipConfig}.tmp
+fi
+
+# Modify existing [battery] section to disable it  
+if grep -q "^\[battery\]" ${starshipConfig}; then
+sed -i.tmp '/^\[battery\]/,/^\[/ { /^\[battery\]/ a\
+disabled = true
+; /^disabled = /d }' ${starshipConfig} && rm -f ${starshipConfig}.tmp
+fi
+'';
 
   # Home Manager itself
   programs.home-manager.enable = true;
